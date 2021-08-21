@@ -50,164 +50,18 @@
 
 <body>
     <div id="app" class="page-holder {{ request()->routeIs('frontend.detail') ? ' bg-light' : null }}">
-        <!-- navbar-->
-        <header class="bg-white header">
-            <div class="container px-0 px-lg-3">
-                <nav class="py-3 navbar navbar-expand-lg navbar-light px-lg-0"><a class="navbar-brand"
-                        href="index.html"><span class="font-weight-bold text-uppercase text-dark">Boutique</span></a>
-                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation"><span
-                            class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="mr-auto navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('frontend.index') }}">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('frontend.shop') }}">Shop</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('frontend.detail') }}">Product detail</a>
-                            </li>
-                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="pagesDropdown"
-                                    href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                                <div class="mt-3 dropdown-menu" aria-labelledby="pagesDropdown"><a
-                                        class="border-0 dropdown-item transition-link" href="{{ route('frontend.index') }}">Homepage</a><a
-                                        class="border-0 dropdown-item transition-link" href="#">Category</a><a
-                                        class="border-0 dropdown-item transition-link" href="{{ route('frontend.detail') }}">Product
-                                        detail</a><a class="border-0 dropdown-item transition-link"
-                                        href="{{ route('frontend.cart') }}">Shopping cart</a><a
-                                        class="border-0 dropdown-item transition-link" href="{{ route('frontend.checkout') }}">Checkout</a>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul class="ml-auto navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="{{ route('frontend.cart') }}"> <i
-                                        class="mr-1 fas fa-dolly-flatbed text-gray"></i>Cart<small
-                                        class="text-gray">(2)</small></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"> <i class="mr-1 far fa-heart"></i><small
-                                        class="text-gray"> (0)</small></a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"> <i
-                                        class="mr-1 fas fa-user-alt text-gray"></i>Login</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </header>
+
+        @include('partial.frontend.header')
 
         <div class="container">
             @yield('content')
         </div>
 
-        <footer class="text-white bg-dark">
-            <div class="container py-4">
-                <div class="py-5 row">
-                    <div class="mb-3 col-md-4 mb-md-0">
-                        <h6 class="mb-3 text-uppercase">Customer services</h6>
-                        <ul class="mb-0 list-unstyled">
-                            <li><a class="footer-link" href="#">Help &amp; Contact Us</a></li>
-                            <li><a class="footer-link" href="#">Returns &amp; Refunds</a></li>
-                            <li><a class="footer-link" href="#">Online Stores</a></li>
-                            <li><a class="footer-link" href="#">Terms &amp; Conditions</a></li>
-                        </ul>
-                    </div>
-                    <div class="mb-3 col-md-4 mb-md-0">
-                        <h6 class="mb-3 text-uppercase">Company</h6>
-                        <ul class="mb-0 list-unstyled">
-                            <li><a class="footer-link" href="#">What We Do</a></li>
-                            <li><a class="footer-link" href="#">Available Services</a></li>
-                            <li><a class="footer-link" href="#">Latest Posts</a></li>
-                            <li><a class="footer-link" href="#">FAQs</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <h6 class="mb-3 text-uppercase">Social media</h6>
-                        <ul class="mb-0 list-unstyled">
-                            <li><a class="footer-link" href="#">Twitter</a></li>
-                            <li><a class="footer-link" href="#">Instagram</a></li>
-                            <li><a class="footer-link" href="#">Tumblr</a></li>
-                            <li><a class="footer-link" href="#">Pinterest</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="pt-4 border-top" style="border-color: #1d1d1d !important">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <p class="mb-0 small text-muted">&copy; 2020 All rights reserved.</p>
-                        </div>
-                        <div class="col-lg-6 text-lg-right">
-                            <p class="mb-0 small text-muted">Template designed by <a class="text-white reset-anchor"
-                                    href="https://bootstraptemple.com/p/bootstrap-ecommerce">Bootstrap Temple</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        @include('partial.frontend.footer')
 
     </div>
 
-    <!--  Modal -->
-    <div class="modal fade" id="productView" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="p-0 modal-body">
-                    <div class="row align-items-stretch">
-                        <div class="col-lg-6 p-lg-0"><a class="bg-center bg-cover product-view d-block h-100"
-                                style="background: url({{ asset('frontend/img/product-5.jpg') }})"
-                                href="{{ asset('frontend/img/product-5.jpg') }}" data-lightbox="productview"
-                                title="Red digital smartwatch"></a><a class="d-none"
-                                href="{{ asset('frontend/img/product-5-alt-1.jpg') }}" title="Red digital smartwatch"
-                                data-lightbox="productview"></a><a class="d-none"
-                                href="{{ asset('frontend/img/product-5-alt-2.jpg') }}" title="Red digital smartwatch"
-                                data-lightbox="productview"></a>
-                        </div>
-                        <div class="col-lg-6">
-                            <button class="p-4 close" type="button" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">×</span></button>
-                            <div class="p-5 my-md-4">
-                                <ul class="mb-2 list-inline">
-                                    <li class="m-0 list-inline-item"><i class="fas fa-star small text-warning"></i>
-                                    </li>
-                                    <li class="m-0 list-inline-item"><i class="fas fa-star small text-warning"></i>
-                                    </li>
-                                    <li class="m-0 list-inline-item"><i class="fas fa-star small text-warning"></i>
-                                    </li>
-                                    <li class="m-0 list-inline-item"><i class="fas fa-star small text-warning"></i>
-                                    </li>
-                                    <li class="m-0 list-inline-item"><i class="fas fa-star small text-warning"></i>
-                                    </li>
-                                </ul>
-                                <h2 class="h4">Red digital smartwatch</h2>
-                                <p class="text-muted">$250</p>
-                                <p class="mb-4 text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis
-                                    dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam
-                                    convallis.</p>
-                                <div class="mb-4 row align-items-stretch">
-                                    <div class="col-sm-7 pr-sm-0">
-                                        <div class="px-3 py-1 border d-flex align-items-center justify-content-between">
-                                            <span class="mr-4 small text-uppercase text-gray no-select">Quantity</span>
-                                            <div class="quantity">
-                                                <button class="p-0 dec-btn"><i class="fas fa-caret-left"></i></button>
-                                                <input class="p-0 border-0 form-control shadow-0" type="text" value="1">
-                                                <button class="p-0 inc-btn"><i class="fas fa-caret-right"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5 pl-sm-0"><a
-                                            class="px-0 btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center"
-                                            href="cart.html">Add to cart</a>
-                                    </div>
-                                </div><a class="p-0 btn btn-link text-dark" href="#"><i
-                                        class="mr-2 far fa-heart"></i>Add to wish list</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('partial.frontend.modal')
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
